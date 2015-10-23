@@ -56,7 +56,7 @@ class EventStream(object):
 
             return event_count
 
-    def __hash_args(self, args, secret=None):
+    def __hash_args(self, args):
         """
             Hashes arguments by joining key=value pairs, appending a secret, and
             then taking the MD5 hex digest.
@@ -68,10 +68,6 @@ class EventStream(object):
 
         args_joined = "".join([a + '=' + str(args[a]) for a in sorted(args.keys())])
         sig_hash = hashlib.md5(args_joined.encode('utf-8'))
-
-        if secret:
-            sig_hash.update(secret)
-        elif self.api_secret:
-            sig_hash.update(self.api_secret.encode('utf-8'))
+        sig_hash.update(self.api_secret.encode('utf-8'))
 
         return sig_hash.hexdigest()
