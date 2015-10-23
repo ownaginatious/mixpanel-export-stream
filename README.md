@@ -5,6 +5,7 @@ This library is based on the Mixpanel's own data export library found [here](htt
 
 ## Installation
 To install the mixpanel export library, simply run the following:
+
 `pip install mixpanel_export`
 
 ## What do you mean by a "stream"?
