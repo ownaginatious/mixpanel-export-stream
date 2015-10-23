@@ -1,8 +1,11 @@
 # mixpanel-export-stream
-
 A small Python library for exporting and reading raw event data from Mixpanel while taking advantage of the streamable JSONLine data format.
 
 This library is based on the Mixpanel's own data export library found [here](https://mixpanel.com/docs/api-documentation/data-export-api#libs-python).
+
+## Installation
+To install the mixpanel export library, simply run the following:
+`pip install mixpanel_export`
 
 ## What do you mean by a "stream"?
 
@@ -22,8 +25,8 @@ This is simple and fast to do with this library.
 from collections import Counter
 from mixpanel_export import EventStream
 
-api_key = '...'
-api_secret = '...'
+api_key = ...
+api_secret = ...
 
 es = EventStream(api_key, api_secret)
 
