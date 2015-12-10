@@ -1,1 +1,1 @@
-from mixpanel_stream import EventStream
+from .mixpanel_stream import EventStream
