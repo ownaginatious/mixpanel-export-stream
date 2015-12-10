@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='mixpanel_export',
     packages=['mixpanel_export'],
-    version='0.1',
+    version='0.2',
     description='A streaming library for reading raw event data from Mixpanel\'s export API',
     author='Dillon Dixon',
     author_email='dillondixon@gmail.com',
