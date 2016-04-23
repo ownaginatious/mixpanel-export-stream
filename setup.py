@@ -1,18 +1,26 @@
-from distutils.core import setup
+from distutils.core import setup, find_packages
+from io import open
+import versioneer
 
 setup(
     name='mixpanel_export',
-    packages=['mixpanel_export'],
-    version='0.2',
-    description='A streaming library for reading raw event data from Mixpanel\'s export API',
+    packages=find_packages(exclude=["tests"]),
+    version=versioneer.get_version(),
+    description='A streaming library for reading raw event '
+                'data from Mixpanel\'s export API',
     author='Dillon Dixon',
     author_email='dillondixon@gmail.com',
     url='https://github.com/ownaginatious/mixpanel-export-stream',
-    download_url='https://github.com/ownaginatious/mixpanel-export-stream/tarball/0.1',
     license='MIT',
-    keywords=['mixpanel', 'export', 'stream'], # arbitrary keywords
-    classifiers=[],
-    install_requires=[
-        'requests'
-    ]
+    keywords=['mixpanel', 'export', 'stream'],
+    classifiers=[
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5'
+    ],
+    install_requires=[line.strip()
+                      for line in open("requirements.txt", "r",
+                                       encoding="utf-8").readlines()],
 )

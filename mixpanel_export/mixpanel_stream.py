@@ -17,11 +17,10 @@ class EventStream(object):
 
     def request(self, params, handler, expire=600):
         """
-            params - Extra parameters associated with method
-            handler - A function to handle an incoming json event
-            expire - The amount of time to expire a request after in seconds
+        params - Extra parameters associated with method
+        handler - A function to handle an incoming json event
+        expire - The amount of time to expire a request after in seconds
         """
-
         params['api_key'] = self.api_key
         params['expire'] = int(time.time()) + expire
         params['format'] = 'json'
@@ -33,11 +32,11 @@ class EventStream(object):
 
         request_url = '/'.join([self.ENDPOINT, str(self.VERSION)]) + "/export"
 
-        with closing(requests.get(request_url, params, stream=True)) as jsonl_stream:
+        with closing(requests.get(request_url, params, stream=True)) as s:
 
             event_count = 0
 
-            for line in jsonl_stream.iter_lines():
+            for line in s.iter_lines():
 
                 if line.strip() == "":
                     break
@@ -56,17 +55,17 @@ class EventStream(object):
 
             return event_count
 
-    def __hash_args(self, args):
+    def _hash_args(self, args):
         """
-            Hashes arguments by joining key=value pairs, appending a secret, and
-            then taking the MD5 hex digest.
+        Hashes arguments by joining key=value pairs, appending a secret, and
+        then taking the MD5 hex digest.
         """
-
         for a in args:
             if isinstance(args[a], list):
                 args[a] = json.dumps(args[a])
 
-        args_joined = "".join([a + '=' + str(args[a]) for a in sorted(args.keys())])
+        args_joined = "".join([a + '=' + str(args[a])
+                              for a in sorted(args.keys())])
         sig_hash = hashlib.md5(args_joined.encode('utf-8'))
         sig_hash.update(self.api_secret.encode('utf-8'))
 
