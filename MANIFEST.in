@@ -1,0 +1,2 @@
+include versioneer.py
+include mixpanel_export/_version.py
