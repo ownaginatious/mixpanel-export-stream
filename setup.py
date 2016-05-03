@@ -6,6 +6,7 @@ setup(
     name='mixpanel_export',
     packages=find_packages(exclude=["tests"]),
     version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass(),
     description='A streaming library for reading raw event '
                 'data from Mixpanel\'s export API',
     author='Dillon Dixon',
