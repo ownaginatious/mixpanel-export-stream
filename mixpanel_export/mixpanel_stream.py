@@ -28,7 +28,7 @@ class EventStream(object):
         if 'sig' in params:
             del params['sig']
 
-        params['sig'] = self.__hash_args(params)
+        params['sig'] = self._hash_args(params)
 
         request_url = '/'.join([self.ENDPOINT, str(self.VERSION)]) + "/export"
 
